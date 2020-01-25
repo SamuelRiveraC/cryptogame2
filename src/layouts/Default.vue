@@ -1,15 +1,19 @@
 <template>
-  <div class="layout">
-    <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-      </nav>
-    </header>
-    <slot/>
+  <div id="app">
+    <div class="feed">
+      <div class="header">
+        <g-link to="/">
+          <p class="logo">Coins<span>2</span>Trade</p> {{ $static.metadata.siteName }}
+        </g-link>
+      </div>
+
+      <slot />
+
+      <div class="footer">
+        <g-image class="background_img" src="/IMG/Background_crypto_img.png" />
+        <p class="trademark">2018 <a href="#">Samuelriverac</a> & <a href="#">JDesign</a></p>      
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,30 +25,9 @@ query {
 }
 </static-query>
 
+<script>
+</script>
+
 <style>
-body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
-  line-height: 1.5;
-}
 
-.layout {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
-}
-
-.nav__link {
-  margin-left: 20px;
-}
 </style>

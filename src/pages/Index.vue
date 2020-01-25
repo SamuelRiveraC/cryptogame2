@@ -1,33 +1,57 @@
 <template>
   <Layout>
-
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
+    <div class="main_menu">
+          <p class="main_menu_text">
+            <g-link :to="{path:'/play', query: { game: 'new'}}">
+              <span>New Game</span>
+            </g-link>
+          </p>
+          <p class="main_menu_text">
+            <g-link :to="{path:'/play', query: { game: 'load'}}">
+              Load Game
+            </g-link>
+          </p>
+          <p class="main_menu_text">
+            <g-link :to="{path:'/instructions'}">
+              Instructions
+            </g-link>
+          </p>
+          <!--
+          <p class="main_menu_text">
+            <g-link to="/leaderboard">
+              Leaderboard
+            </g-link>
+          </p> 
+          -->  
+    </div>
   </Layout>
 </template>
 
 <script>
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'Homepage!'
+  },
+  created () {
+    if (this.readCookie('timeIndex') === null || this.readCookie('dateInMs') === null) {
+      console.error('NO SAVEGAME AT HOME')
+    }
+  },
+  methods:{
+    readCookie(name) {
+      var key = name + "=";
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(key) === 0) {
+          return cookie.substring(key.length, cookie.length);
+        }
+      }
+      return null;
+    },  
   }
 }
 </script>
-
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-</style>
