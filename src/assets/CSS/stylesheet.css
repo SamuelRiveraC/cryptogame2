@@ -1,0 +1,281 @@
+/* 
+  http://meyerweb.com/eric/tools/css/reset/
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, 
+strike, strong, sub, sup, tt, var, b, u, i, 
+dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, table, caption, tbody, tfoot, thead,
+tr, th, td, article, aside, canvas, details,
+embed,  figure, figcaption, footer, header, 
+hgroup,  menu,  nav, output, section,
+summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*FONTS */
+
+@font-face {
+    font-family: 'audimat';
+    src: url('../Fonts/audimat_3000_gras-webfont.woff2') format('woff2'),
+         url('../Fonts/audimat_3000_gras-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'abel';
+    src: url('../Fonts/abel-regular-webfont.woff2') format('woff2'),
+         url('../Fonts/abel-regular-webfont.woff') format('woff');
+}
+
+/*STATIC ELEMENTS*/
+
+body {
+  background-color: #092336;
+  font-family: abel;
+  color: white;
+  font-size: 1.2em;
+}
+
+.header{
+  font-family: audimat;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+.header a:hover{
+  text-decoration: none
+}
+
+.feed{
+  background-color: #0a2a40;
+  box-shadow: 0 0 5em 1em rgba(0,0,0,0.25);
+  margin-left: 10%;
+  width: 80%;
+  padding: 0 2.5% 0 2.5%;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.main_menu{
+  font-family: abel;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1.7%;
+        
+}
+
+  .main_menu_text a{
+    text-decoration: none;
+    
+    font-size: 20pt;
+    text-align: center;
+    line-height: 40px;
+    color: #e3e3e3;
+}
+
+.trademark a{
+  color: #e3e3e3;
+  
+  font-size: 12pt;
+  text-decoration: none;
+}
+
+.trademark {
+  color: #e3e3e3;
+  
+  font-size: 12pt;
+  position: absolute;
+}
+
+.footer{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: auto; 
+  }
+
+.background_img{
+  opacity: 0.5;
+}
+
+span{
+  color: #ffa219;
+  
+}
+
+/*HOME*/
+
+  /*HEADER*/
+  .header{
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 5%;
+  }
+
+  .logo_container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .logo{
+    color: #e3e3e3;
+    
+    font-size: 50pt;
+    }
+
+  a{
+    text-decoration: none;
+  }
+
+/*INSTRUCTIONS*/
+
+.instructions_title{
+  font-size: 25pt;
+  color: #e3e3e3;
+  text-align: center;
+  
+  margin-top: 10px;
+}
+
+.instructions_text{
+  font-size: 15pt;
+  color: #e3e3e3;
+  text-align: justify;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  
+}
+
+.title_container{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.instructions_container{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.home{
+  position: absolute;
+  padding: 30px;
+  margin-left: 30%;
+}
+
+  .selectCoin {
+    background-color: #071d2c;
+    padding: 0.5em 0 0.5em 0;
+    margin: 0 0.25em 0 0.25em;
+    cursor: pointer;
+    box-shadow: 0 0 1em 0.33em rgba(0,0,0,0.1);
+  }
+  .selectCoin:hover {
+    background-color: #114569;
+  }
+  .selectCoinDisabled {
+    background-color: #273036 !important;
+    cursor: default !important;
+  }
+  .selectCoinDisabled:hover {
+    background-color: #273036 !important;
+  }
+
+  .buysell-info .col {
+    background-color: #071d2c;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+  .buysell-info img{
+    height:1.5em;
+    width:1.5em;
+  }
+  .buysell-button {
+    background-color: #071d2c;
+    cursor: pointer;    
+  }
+  .buysell-button:hover {
+    background-color: #114569;
+  }
+
+/*_______________________________________________________________________
+ 
+.container {
+  background-color: #1b384b;
+  min-height: 95vh;
+  padding:2.5em;
+}
+.container a {
+  color: #ffffff;
+}
+.container a:hover {
+  text-decoration: none;
+  color: #eeeeee;
+}
+
+.main-menu {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.main-menu a {
+  font-size: 2em;
+}
+
+.footer {
+  width: 100%;
+  line-height: 3;
+  text-align: center;
+}
+*/
