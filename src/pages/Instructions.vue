@@ -1,20 +1,62 @@
 <template>
     <Layout>
-      <div class="instructions_container">
-		  <div class="Title_container">
-		    <h1 class="instructions_title">Instructions</h1>
-		  </div>
-		  <p class="instructions_text">
-		    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta dolorem nesciunt et, quis eum neque quo impedit rerum dignissimos tempora quaerat deserunt illum eos aspernatur? Explicabo totam id ducimus quo!
-		    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quasi alias omnis voluptatibus, perspiciatis tenetur necessitatibus corporis beatae ipsam non quo aliquam aperiam tempora dolore rerum accusantium veniam enim assumenda?
-		  </p>
-		  <div class="text-center">
-		      <g-link to="/">
-		      	Return
-		      </g-link>
-		    </div>
-		</div>
-    </Layout>
+      <div class="container">
+	    
+	    <div class="row">
+	      <div class="col text-center">
+	        <h2 class="h2">Instructions</h2>
+	      </div>
+	    </div>
+	    
+	    <div class="row justify-content-center text-center mb-5"> 
+			<div class="col-8">
+				I MUST FIND THE TEXT FOR THESE INSTRUCTIONS AND ADD IT HERE
+			</div>
+	    </div>
+
+	    <div class="row justify-content-center">
+	    	<div class="col-8 text-center">
+		    	<h4 class="h4"> I will use this as a todo list:  </h4>
+	    	</div>
+	    	<div class="col-8 ">
+				<ul>
+					<li>
+						Update value over 1 years :o 4/11/2018 = 423 days / values more
+					</li>
+					<li>
+						Update UI for smaller screens :D
+					</li>
+					<li>
+						Add toasts for every time you buy or sell 
+					</li>
+					<li>
+						Selected Coin New Color and Names over the coins
+					</li>
+					<li>
+						Maybe add a fifth one coin? 
+					</li>
+					<li>
+						Savegames work but when you enter the page they dont update immediatly (prices, my coins and my usd)
+					</li>
+					<li>
+						Let the player know that has a savegame available
+					</li>
+					<li>
+						Change color scheme
+					</li>
+				</ul>
+	    	</div>
+	    </div>
+	    
+	    <div class="row">
+	      <div class="col main-menu text-center">
+		    <g-link to="/">
+		    	Return
+		    </g-link>
+	      </div>
+	    </div>
+	  </div>
+  </Layout>
 </template>
 
 <script>

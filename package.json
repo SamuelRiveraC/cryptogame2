@@ -4,11 +4,15 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
+    "gh-pages": "^2.2.0",
     "gridsome": "^0.7.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",

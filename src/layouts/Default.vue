@@ -7,7 +7,12 @@
         </g-link>
       </div>
 
-      <slot />
+
+      <transition name="fade" appear>
+        <main> <!-- a wrapper for slot is needed -->
+          <slot /> <!-- the content -->
+        </main>
+      </transition>
 
       <div class="footer">
         <g-image class="background_img" src="/IMG/Background_crypto_img.png" />
@@ -25,9 +30,12 @@ query {
 }
 </static-query>
 
-<script>
-</script>
-
 <style>
+.fade-enter-active {
+  transition: opacity .5s;
+}
 
+.fade-enter {
+  opacity: 0;
+}
 </style>

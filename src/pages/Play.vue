@@ -221,6 +221,7 @@
 
 <script>
   import Chart from '~/components/Chart.vue'
+  import dataCoin from '~/data/dataCoin.json'
 
 export default {
   metaInfo: {
@@ -255,20 +256,9 @@ export default {
 
       // GRAPHS RELATED DATA
       dates: [],
-      dataCoin: {
-        'btc':[
-          0.05
-          ], 
-        'eth':[
-          1.00
-        ],
-        'bch':[
-          275.00
-        ],
-        'dash':[
-          0.21
-        ]
-      },
+
+      dataCoin: dataCoin,
+
       datacollection: {
         labels: [1,2,3,4,5,6,7,8,9,10],
         datasets: [{
