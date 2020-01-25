@@ -3,7 +3,7 @@
 
 import DefaultLayout from '~/layouts/Default.vue'
 import 'bootstrap/dist/css/bootstrap.css'
-import '../static/CSS/stylesheet.css'
+import '~/assets/CSS/stylesheet.css'
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout)

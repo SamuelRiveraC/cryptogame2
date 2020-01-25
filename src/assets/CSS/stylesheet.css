@@ -49,14 +49,14 @@ table {
 
 @font-face {
     font-family: 'audimat';
-    src: url('../../static/Fonts/audimat_3000_gras-webfont.woff2') format('woff2'),
-         url('../../static/Fonts/audimat_3000_gras-webfont.woff') format('woff');
+    src: url('../Fonts/audimat_3000_gras-webfont.woff2') format('woff2'),
+         url('../Fonts/audimat_3000_gras-webfont.woff') format('woff');
 }
 
 @font-face {
     font-family: 'abel';
-    src: url('../../static/Fonts/abel-regular-webfont.woff2') format('woff2'),
-         url('../../static/Fonts/abel-regular-webfont.woff') format('woff');
+    src: url('../Fonts/abel-regular-webfont.woff2') format('woff2'),
+         url('../Fonts/abel-regular-webfont.woff') format('woff');
 }
 
 /*STATIC ELEMENTS*/
@@ -237,6 +237,10 @@ span{
     background-color: #071d2c;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+  }
+  .buysell-info img{
+    height:1.5em;
+    width:1.5em;
   }
   .buysell-button {
     background-color: #071d2c;

@@ -32,7 +32,7 @@ export default {
   metaInfo: {
     title: 'Homepage!'
   },
-  created () {
+  mounted () { //stay at mounted not created what's happening?
     if (this.readCookie('timeIndex') === null || this.readCookie('dateInMs') === null) {
       console.error('NO SAVEGAME AT HOME')
     }

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-6 col row selectCoin" @click="updateChart('btc')">
           <div class="col-sm-12 col-md-4 text-center">
-            <g-image height="2em" src="/IMG/BTC_Miniature.png" />
+            <g-image src="~/assets/IMG/BTC_Miniature.png" />
           </div>
           <div class="col-sm-12 col-md-8">
             <span style="color:white;">
@@ -17,7 +17,7 @@
         </div>
         <div class="col-xs-6 col row selectCoin" :class="{selectCoinDisabled:dashUnlocked}" @click="updateChart('dash')">
           <div class="col-sm-12 col-md-4 text-center">
-            <g-image height="2em" src="/IMG/RCH_Miniature.png" />
+            <g-image src="~/assets/IMG/RCH_Miniature.png" />
           </div>
           <div class="col-sm-12 col-md-8">
             <span style="color:white;">
@@ -30,7 +30,7 @@
         </div>
         <div class="col-xs-6 col row selectCoin" :class="{selectCoinDisabled:ethAndBchUnlocked}" @click="updateChart('eth')">
           <div class="col-sm-12 col-md-4 text-center">
-            <g-image height="2em" src="/IMG/ETH_Miniature.png" />
+            <g-image src="~/assets/IMG/ETH_Miniature.png" />
           </div>
           <div class="col-sm-12 col-md-8">
             <span style="color:white;">
@@ -43,7 +43,7 @@
         </div>
         <div class="col-xs-6 col row selectCoin" :class="{selectCoinDisabled:ethAndBchUnlocked}" @click="updateChart('bch')">
           <div class="col-sm-12 col-md-4 text-center">
-            <g-image height="2em" src="/IMG/BCH_Miniature.png" />
+            <g-image src="~/assets/IMG/BCH_Miniature.png" />
           </div>
           <div class="col-sm-12 col-md-8">
             <span style="color:white;">
@@ -67,19 +67,19 @@
         </div>
         <div class="col-5 row buysell-info justify-content-center">
           <div class="col buysell-button text-center" @click="stopTimer()">
-            <g-image style="height:1.5em;margin-top: 0.5em;" src="/IMG/Pause_game_button.png" />
+            <g-image src="~/assets/IMG/Pause_game_button.png" />
           </div>
           <div class="col buysell-button text-center" @click="nextTimer()">
-            <g-image style="height:1.5em;margin-top: 0.5em;" src="/IMG/Forward_day_game_button.png" />
+            <g-image src="~/assets/IMG/Forward_day_game_button.png" />
           </div>
           <div class="col buysell-button text-center" @click="startTimer(1000)">
-            <g-image style="height:1.5em;margin-top: 0.5em;" src="/IMG/Play_game_button.png" />
+            <g-image src="~/assets/IMG/Play_game_button.png" />
           </div>
           <div class="col buysell-button text-center" @click="startTimer(500)">
-            <g-image style="height:1.5em;margin-top: 0.5em;" src="/IMG/Forward_game_button.png" />
+            <g-image src="~/assets/IMG/Forward_game_button.png" />
           </div>
           <div class="col buysell-button text-center" @click="startTimer(100)">
-            <g-image style="height:1.5em;margin-top: 0.5em;" src="/IMG/Fast_forward_game_button.png" />
+            <g-image src="~/assets/IMG/Fast_forward_game_button.png" />
           </div>
         </div>
       </div>
@@ -294,15 +294,14 @@ export default {
       }
     }
   },
-  created () {
-    window.addEventListener('beforeunload', function(event) {
+  mounted () { 
+    window.addEventListener('beforeunload', function(event) { //stay at mounted not created what's happening?
       window.setTimeout(function () { 
         window.location = '/';
       }, 0); 
       window.onbeforeunload = null   
     })
-  },
-  mounted () {
+
     if (this.$route.query.game == "new") {
       this.newGame()
     } else if (this.$route.query.game == "load") {
