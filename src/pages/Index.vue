@@ -1,40 +1,40 @@
 <template>
   <Layout>
-    <div class="main_menu">
-          <p class="main_menu_text">
-            <g-link :to="{path:'/play', query: { game: 'new'}}">
-              <span>New Game</span>
-            </g-link>
-          </p>
-          <p class="main_menu_text">
-            <g-link :to="{path:'/play', query: { game: 'load'}}">
-              Load Game
-            </g-link>
-          </p>
-          <p class="main_menu_text">
-            <g-link :to="{path:'/instructions'}">
-              Instructions
-            </g-link>
-          </p>
-          <!--
-          <p class="main_menu_text">
-            <g-link to="/leaderboard">
-              Leaderboard
-            </g-link>
-          </p> 
-          -->  
-    </div>
+    <ul class="main_menu">
+      <li>
+        <g-link :to="{path:'/play', query: { game: 'new'}}">
+          New Game
+        </g-link>
+      </li>
+      <li :class="{  main_menu__disabled : !savegame}" >
+        <g-link :to="{path:'/play', query: { game: 'load'}}">
+          Load Game
+        </g-link>
+      </li>
+      <li>
+        <g-link :to="{path:'/instructions'}">
+          Instructions
+        </g-link>
+      </li>
+    </ul>
   </Layout>
 </template>
 
 <script>
 export default {
   metaInfo: {
-    title: 'Homepage!'
+    title: 'Home page'
   },
-  mounted () { //stay at mounted not created what's happening?
+  mounted () {
     if (this.readCookie('timeIndex') === null || this.readCookie('dateInMs') === null) {
-      console.error('NO SAVEGAME AT HOME')
+      console.log('NO SAVEGAME AT HOME')
+    } else {
+      this.savegame = true
+    }
+  },
+  data () {
+    return {
+      savegame: false
     }
   },
   methods:{

@@ -4,7 +4,7 @@
 	    
 	    <div class="row">
 	      <div class="col text-center">
-	        <h2 class="h2">Instructions</h2>
+	        <p class="instructions_title">Instructions</p>
 	      </div>
 	    </div>
 	    
@@ -16,7 +16,7 @@
 
 	    <div class="row justify-content-center">
 	    	<div class="col-8 text-center">
-		    	<h4 class="h4"> I will use this as a todo list:  </h4>
+		    	<p class="instructions_title"> I will use this as a todo list:  </p>
 	    	</div>
 	    	<div class="col-8 ">
 				<ul>
@@ -41,9 +41,6 @@
 					<li>
 						Let the player know that has a savegame available
 					</li>
-					<li>
-						Change color scheme
-					</li>
 				</ul>
 	    	</div>
 	    </div>
@@ -55,6 +52,7 @@
 		    </g-link>
 	      </div>
 	    </div>
+
 	  </div>
   </Layout>
 </template>

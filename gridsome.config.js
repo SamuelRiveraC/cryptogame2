@@ -5,8 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome framework version',
-  plugins: [],
+  siteName: 'Gridsome framework edition',
   siteUrl: 'https://samuelriverac.github.io',
   pathPrefix: '/cryptogame2',
 }
