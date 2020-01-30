@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
       
-      <div class="row mb-5">
+      <div class="row mb-3">
         <div v-for="coin in coins" :key="coin" @click="updateChart(coin)" :class="coinStyle(coin)">
           <div class="row">
             <div class="col-12 col-md-4 text-center">
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mb-3">
         <div class="col-2 text-center">
           <p class="h4">USD in Cash: <br> ${{have['usd'].toFixed(2)}}</p>
         </div>
@@ -49,133 +49,38 @@
           </div>
         </div>
       </div>
-      <div class="row"> 
+      
+      <div class="row mb-3"> 
         <div class="col-12">
            <Chart :chart-data="datacollection" :options="options"></Chart>
         </div>
       </div>
+
       <div class="row">
-        <div class="col mr-4">
+        <div class="col-6">
+
           <div class="row">
-            <div class="col">
+            <div class="col-12">
               <p class="h2">Buy</p>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>1 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="buy('1' ,actualCoin)">
-                <span>${{priceCoin(1,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>10 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="buy('10' ,actualCoin)">
-                <span>${{priceCoin(10,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>25 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="buy('25' ,actualCoin)">
-                <span>${{priceCoin(25,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>50 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="buy('50' ,actualCoin)">
-                <span>${{priceCoin(50,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-          </div>        
-          <div class="row justify-content-center">
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>100 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="buy('100' ,actualCoin)">
-                <span>${{priceCoin(100,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>200 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="buy('200' ,actualCoin)">
-                <span>${{priceCoin(200,actualCoin).toFixed(2)}}</span>
-              </div>
+          <div class="row">
+            <div v-for="amount in buySellAmounts" :key="amount" class="col-3 buysell-button" @click="buy(amount ,actualCoin)">
+              <span> Buy {{amount}} {{actualCoin.toUpperCase()}} <br> for ${{priceCoin(amount,actualCoin).toFixed(2)}}</span>
             </div>
           </div>     
         </div>
-        <div class="col ml-4">
+        <div class="col-6">
           <div class="row">
-            <div class="col">
+            <div class="col-12">
               <p class="h2">Sell</p>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>1 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="sell('1' ,actualCoin)">
-                <span> ${{priceCoin(1,actualCoin).toFixed(2)}}</span>
-              </div>
+          <div class="row">
+            <div v-for="amount in buySellAmounts" :key="amount" class="col-3 buysell-button" @click="sell(amount ,actualCoin)">
+              <span> Sell {{amount}} {{actualCoin.toUpperCase()}} <br> for ${{priceCoin(amount,actualCoin).toFixed(2)}}</span>
             </div>
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>10 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="sell('10' ,actualCoin)">
-                <span> ${{priceCoin(10,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>25 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="sell('25' ,actualCoin)">
-                <span> ${{priceCoin(25,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>50 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="sell('50' ,actualCoin)">
-                <span> ${{priceCoin(50,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-          </div>        
-          <div class="row justify-content-center">
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>100 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="sell('100' ,actualCoin)">
-                <span> $ {{priceCoin(100,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-            <div class="col row buysell-info">
-              <div class="col text-center">
-                <p>200 {{actualCoin.toUpperCase()}}</p>
-              </div>
-              <div class="col text-center buysell-button" @click="sell('200' ,actualCoin)">
-                <span> $ {{priceCoin(200,actualCoin).toFixed(2)}}</span>
-              </div>
-            </div>
-          </div>
+          </div>  
         </div>    
       </div>
     </div>
@@ -198,6 +103,8 @@ export default {
       //TICKING RELATED DATA
       coins:['btc','dash','eth','bch',],
       actualCoin: 'btc', //'btc','eth','bch','dash'
+      coinNames: {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash'},
+      buySellAmounts: [1,10,25,50,100,250],
 
       // CASH RELATED DATA
       have: {
@@ -382,64 +289,33 @@ export default {
       if (this.have['usd'] >= amount * this.conversion[coin]) {
         this.have[coin] += Math.floor( (parseInt(amount)) * 100000) / 100000
         this.have['usd'] -= parseInt(amount) * this.conversion[coin]
-      }
+        this.$toasted.show("You spent $"+parseInt(amount) * this.conversion[coin]+" for  "+amount+" "+this.coinNames[coin]).goAway(2500)
+      } else {
+        this.$toasted.show("You can't afford buying more"+this.coinNames[coin]).goAway(2500)
+      }      
 
-      /*
-      if (coin === 'btc' && this.have['usd'] >= amount * this.conversion['btc']) {
-        this.have['btc'] += Math.floor( (parseInt(amount)) * 100000) / 100000
-        this.have['usd'] -= parseInt(amount) * this.conversion['btc']
-      } else if (coin === 'eth' && this.have['usd'] >= amount * this.conversion['eth']) {
-        this.have['eth'] += Math.floor( (parseInt(amount)) * 100000) / 100000 
-        this.have['usd'] -= parseInt(amount) * this.conversion['eth']       
-      } else if (coin === 'bch' && this.have['usd'] >= amount * this.conversion['bch']) {
-        this.have['bch'] += Math.floor( (parseInt(amount)) * 100000) / 100000
-        this.have['usd'] -= parseInt(amount) * this.usdBch
-      } else if (coin === 'dash' && this.have['usd'] >= amount * this.conversion['dash']) {
-        this.have['dash'] += Math.floor( (parseInt(amount)) * 100000) / 100000
-        this.have['usd'] -= parseInt(amount) * this.conversion['dash']
-      }
-      */       
     },
     sell (amount,coin) {
-
       if (this.have[coin] >= amount) {
         this.have[coin] -= parseInt(amount)
         this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion[coin]) * 100000) / 100000
+        this.$toasted.show("You sold "+amount+" "+this.coinNames[coin]+" for $"+parseInt(amount) * this.conversion[coin]).goAway(2500)
+      } else {
+        this.$toasted.show("You don't have enough "+this.coinNames[coin]+" to sell").goAway(2500)
       }
 
-
-      /*
-      if (this.have['btc'] >= amount && coin === 'btc') {
-        this.have['btc'] -= parseInt(amount)
-        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion['btc']) * 100000) / 100000
-      } else if (this.have['eth'] >= amount && coin === 'eth') {
-        this.have['eth'] -= parseInt(amount)
-        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion['eth']) * 100000) / 100000
-      } else if (this.have['bch'] >= amount && coin === 'bch') {
-        this.have['bch'] -= parseInt(amount)
-        this.have['usd'] += Math.floor( (parseInt(amount)* this.usdBch) * 100000) / 100000
-      } else if (this.have['dash'] >= amount && coin === 'dash') {
-        this.have['dash'] -= parseInt(amount)
-        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion['dash']) * 100000) / 100000
-      }
-      */
     },
     // VALUES AND CHART METHODS
     priceCoin(amount,coin) {
-
       return parseInt(amount)*this.conversion[coin]
-
     },
     updateChart (coin) {
-      
-
-      if (!((coin === 'eth' || coin === 'bch') && this.unlocked['eth'] === true) || !(coin === 'dash' && this.unlocked['dash'] === true)) {
+      if (this.unlocked[coin] || coin == '') {
         if (coin !== '') {
-          let coinNames = {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash'}
           this.actualCoin = coin
-          this.$toasted.show("Selected "+coinNames[coin]).goAway(2500)
+          this.$toasted.show("Selected "+this.coinNames[coin]).goAway(2500)
         }
-        var change = {
+        let change = {
           labels: this.labels,
           datasets: [{
             label: coin.toUpperCase(),
@@ -455,13 +331,17 @@ export default {
       }
     },
     //TIMER METHODS
+
     startTimer (speed) {
+      this.$toasted.show("Game resumed").goAway(2500)
+
       clearInterval(this.timer)
       if (this.timeIndex < this.dataCoin.btc.length) {
         this.timer = setInterval(() => this.countdown(), speed) // 1000ms = 1 second
       }
     },
     nextTimer () {
+      this.$toasted.show("Next day").goAway(2500)
       clearInterval(this.timer)
       this.timer = null
       if (this.timeIndex < this.dataCoin.btc.length) {
@@ -469,6 +349,7 @@ export default {
       }      
     },
     stopTimer () {
+      this.$toasted.show("Game paused").goAway(2500)
       clearInterval(this.timer)
       this.timer = null
     },
@@ -488,12 +369,6 @@ export default {
             this.conversion[this.coins[i]] = this.dataCoin[this.coins[i]][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin[this.coins[i]].length)]
           }
         }
-
-
-
-
-
-
       }
 
       /*

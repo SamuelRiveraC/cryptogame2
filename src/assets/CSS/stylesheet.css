@@ -170,7 +170,7 @@ span{
 
 }
 .coin:hover {
-  background-color: #f1f1f1;
+  background-color: #f0f0f0;
 }
 .coin:active {
   box-sizing: border-box;
@@ -185,7 +185,7 @@ span{
 
 
 .coin__disabled {
-  background-color: #f1f1f1;
+  background-color: #f0f0f0;
   cursor: default;
   box-shadow:none;
 }
@@ -229,9 +229,9 @@ span{
   border-style: solid;
 }
 .player-button:hover {
-  background: #f1f1f1;
+  background: #f0f0f0;
   border-width: 2px 0px 2px 0px;
-  border-color: #f1f1f1;
+  border-color: #f0f0f0;
 }
 .player-button:active {
   background: #ffffff;
@@ -266,10 +266,33 @@ span{
   height:1.5em;
   width:1.5em;
 }
+
+
+
+
+
 .buysell-button {
-  background-color: #071d2c;
-  cursor: pointer;    
+  background-color: #fff;
+  cursor: pointer;   
+
+  margin: 0.5em 0.5em 0.5em; 
+  padding: 0.5em 0em;
+
+  text-align: center;
+  border-width: 2px 0px 2px 0px; border-color: rgba(255, 255, 255, 0); border-radius: 2.5px; border-style: solid; box-shadow: 0px 0px 0px 0px rgba(37, 56, 88, 0.25); /* hover styles */ border-style: solid; box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
+
+} .buysell-button span {
+  color: #333;
 }
+
+
 .buysell-button:hover {
-  background-color: #114569;
+  background: #f0f0f0;
+  border-width: 2px 0px 2px 0px;
+  border-color: #f0f0f0;
+}
+.buysell-button:active {
+  background: #ffffff;
+  border-width: 2px 0px 2px 0px;
+  border-color: #008AE9;
 }

@@ -27,19 +27,13 @@
 						Update UI for smaller screens :D
 					</li>
 					<li>
-						Add toasts for every time you buy or sell 
-					</li>
-					<li>
-						Selected Coin New Color and Names over the coins
-					</li>
-					<li>
 						Maybe add a fifth one coin? 
 					</li>
 					<li>
 						Savegames work but when you enter the page they dont update immediatly (prices, my coins and my usd)
 					</li>
 					<li>
-						Let the player know that has a savegame available
+						Update images https://github.com/man15h/vue-cryptoicon
 					</li>
 				</ul>
 	    	</div>
