@@ -16,8 +16,9 @@
     "gridsome": "^0.7.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
+    "v-tooltip": "^2.0.3",
     "vue-chartjs": "^3.5.0",
     "vue-cryptoicon": "^0.1.6",
-    "vue-toasted": "^1.1.27"
+    "vue-on-toast": "^1.0.1"
   }
 }

@@ -6,25 +6,25 @@
     "assets/fonts/abel-regular-webfont.b62995c0.woff2",
     "assets/fonts/audimat_3000_gras-webfont.d159c1a2.woff",
     "assets/fonts/audimat_3000_gras-webfont.ec2b3498.woff2",
-    "assets/js/app.b67cfa5d.js",
-    "assets/js/page--node-modules-gridsome-app-pages-404-vue.de2ae5ce.js",
-    "assets/js/page--src-pages-index-vue.09d56122.js",
-    "assets/js/page--src-pages-instructions-vue.2b7453a4.js",
-    "assets/js/page--src-pages-leaderboard-vue.b69eedbf.js",
-    "assets/js/page--src-pages-play-vue.82b057b5.js",
-    "assets/js/vendors~page--src-pages-play-vue.52cee00f.js"
+    "assets/js/app.96653392.js",
+    "assets/js/page--node-modules-gridsome-app-pages-404-vue.f72483cf.js",
+    "assets/js/page--src-pages-index-vue.e3cfa517.js",
+    "assets/js/page--src-pages-instructions-vue.9ebb3fbe.js",
+    "assets/js/page--src-pages-leaderboard-vue.c9ae0f5c.js",
+    "assets/js/page--src-pages-play-vue.b5dff447.js",
+    "assets/js/vendors~page--src-pages-play-vue.3a96fb58.js"
   ],
   "initial": [
     "assets/css/6.styles.0347ebc4.css",
-    "assets/js/app.b67cfa5d.js"
+    "assets/js/app.96653392.js"
   ],
   "async": [
-    "assets/js/page--node-modules-gridsome-app-pages-404-vue.de2ae5ce.js",
-    "assets/js/page--src-pages-index-vue.09d56122.js",
-    "assets/js/page--src-pages-instructions-vue.2b7453a4.js",
-    "assets/js/page--src-pages-leaderboard-vue.b69eedbf.js",
-    "assets/js/page--src-pages-play-vue.82b057b5.js",
-    "assets/js/vendors~page--src-pages-play-vue.52cee00f.js"
+    "assets/js/page--node-modules-gridsome-app-pages-404-vue.f72483cf.js",
+    "assets/js/page--src-pages-index-vue.e3cfa517.js",
+    "assets/js/page--src-pages-instructions-vue.9ebb3fbe.js",
+    "assets/js/page--src-pages-leaderboard-vue.c9ae0f5c.js",
+    "assets/js/page--src-pages-play-vue.b5dff447.js",
+    "assets/js/vendors~page--src-pages-play-vue.3a96fb58.js"
   ],
   "modules": {
     "26806296": [
@@ -737,6 +737,20 @@
       2,
       3
     ],
+    "d5cd77ac": [
+      5,
+      4,
+      1,
+      2,
+      3
+    ],
+    "67a35890": [
+      5,
+      4,
+      1,
+      2,
+      3
+    ],
     "36c8ab0a": [
       5,
       4,
@@ -1025,6 +1039,20 @@
       3
     ],
     "7be09786": [
+      5,
+      4,
+      1,
+      2,
+      3
+    ],
+    "0a0dbb99": [
+      5,
+      4,
+      1,
+      2,
+      3
+    ],
+    "7474556f": [
       5,
       4,
       1,
@@ -2015,14 +2043,14 @@
     "05fb636f": [
       10
     ],
+    "084f91b2": [
+      7
+    ],
     "b86aeb40": [
       8
     ],
     "4fa1e692": [
       9
-    ],
-    "084f91b2": [
-      7
     ],
     "ffe86f4c": [
       6

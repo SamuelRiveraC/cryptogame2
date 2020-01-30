@@ -1,18 +1,16 @@
 <template>
   <Layout>
     <div class="container-fluid">
-
+      <toast-container></toast-container>
       
       <div class="row mb-3">
-        <div v-for="coin in coins" :key="coin" @click="updateChart(coin)" :class="coinStyle(coin)">
+        <div v-for="coin in coins" :key="coin" @click="updateChart(coin)" :class="coinStyle(coin)" v-tooltip="getUnlockDate(coin)">
           <div class="row">
-            <div class="col-12 col-md-4 text-center">
-              <g-image src="~/assets/IMG/BTC_Miniature.png" />
+            <div class="col-4 text-center">
+              <cryptoicon :symbol="coin" size="32" />
             </div>
-            <div class="col-12 col-md-8">
-              <span> You Got: </span>
-              <br>
-              <span> {{ have[coin] }}   {{coin.toUpperCase()}}</span>
+            <div class="col-8">
+              <span> You Got: {{ have[coin] }}   {{coin.toUpperCase()}}</span>
               <br>
               <span> Price:  </span> <span> ${{conversion[coin]}} </span>
             </div>
@@ -93,7 +91,7 @@ import dataCoin from '~/data/dataCoin.json'
 
 export default {
   metaInfo: {
-    title: 'Play'
+    title: 'Play' 
   },
   components: {
     Chart
@@ -101,12 +99,12 @@ export default {
   data () {
     return {
       //TICKING RELATED DATA
-      coins:['btc','dash','eth','bch',],
+      coins:['btc','xrp','ltc','dash','eth','bch'],
       actualCoin: 'btc', //'btc','eth','bch','dash'
       coinNames: {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash'},
       buySellAmounts: [1,10,25,50,100,250],
 
-      // CASH RELATED DATA
+      // CASH RELATED DATA                 ltc 2011, xrp 2012, xmr && dash 2014, eth & bch 2015
       have: {
         usd:  100,
         btc:  0.00000, 
@@ -173,7 +171,8 @@ export default {
     }
   },
   mounted () { 
-    window.addEventListener('beforeunload', function(event) { //stay at mounted not created what's happening?
+
+    window.addEventListener('beforeunload', function(event) {
       window.setTimeout(function () { 
         window.location = '/';
       }, 0); 
@@ -289,9 +288,9 @@ export default {
       if (this.have['usd'] >= amount * this.conversion[coin]) {
         this.have[coin] += Math.floor( (parseInt(amount)) * 100000) / 100000
         this.have['usd'] -= parseInt(amount) * this.conversion[coin]
-        this.$toasted.show("You spent $"+parseInt(amount) * this.conversion[coin]+" for  "+amount+" "+this.coinNames[coin]).goAway(2500)
+        this.$vueOnToast.pop('success', 'Buy coins', "You spent $"+parseInt(amount) * this.conversion[coin]+" for  "+amount+" "+this.coinNames[coin])
       } else {
-        this.$toasted.show("You can't afford buying more"+this.coinNames[coin]).goAway(2500)
+        this.$vueOnToast.pop('error', 'Buy coins', "You can't afford buying more "+this.coinNames[coin])
       }      
 
     },
@@ -299,9 +298,9 @@ export default {
       if (this.have[coin] >= amount) {
         this.have[coin] -= parseInt(amount)
         this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion[coin]) * 100000) / 100000
-        this.$toasted.show("You sold "+amount+" "+this.coinNames[coin]+" for $"+parseInt(amount) * this.conversion[coin]).goAway(2500)
+        this.$vueOnToast.pop('success', 'Sell coins', "You sold "+amount+" "+this.coinNames[coin]+" for $"+parseInt(amount) * this.conversion[coin])
       } else {
-        this.$toasted.show("You don't have enough "+this.coinNames[coin]+" to sell").goAway(2500)
+        this.$vueOnToast.pop('error', 'Sell coins', "You don't have enough "+this.coinNames[coin] +" to sell")
       }
 
     },
@@ -310,10 +309,11 @@ export default {
       return parseInt(amount)*this.conversion[coin]
     },
     updateChart (coin) {
+
       if (this.unlocked[coin] || coin == '') {
         if (coin !== '') {
           this.actualCoin = coin
-          this.$toasted.show("Selected "+this.coinNames[coin]).goAway(2500)
+          this.$vueOnToast.pop('success', 'Selected coin', "You have selected "+this.coinNames[coin])
         }
         let change = {
           labels: this.labels,
@@ -328,12 +328,14 @@ export default {
           }]
         }
         this.datacollection = Object.assign({}, change)         
+      } else {
+          this.$vueOnToast.pop('error', 'Selected coin', this.coinNames[coin]+" hasn't been unlocked yet")
       }
     },
     //TIMER METHODS
 
     startTimer (speed) {
-      this.$toasted.show("Game resumed").goAway(2500)
+      this.$vueOnToast.pop('info', 'Game time', "The game has been resumed ")
 
       clearInterval(this.timer)
       if (this.timeIndex < this.dataCoin.btc.length) {
@@ -341,15 +343,17 @@ export default {
       }
     },
     nextTimer () {
-      this.$toasted.show("Next day").goAway(2500)
+      this.$vueOnToast.pop('info', 'Game time', "The game has moved 1 day forward")
+      
       clearInterval(this.timer)
+
       this.timer = null
       if (this.timeIndex < this.dataCoin.btc.length) {
         this.countdown()
       }      
     },
     stopTimer () {
-      this.$toasted.show("Game paused").goAway(2500)
+      this.$vueOnToast.pop('info', 'Game time', "The game has been paused")
       clearInterval(this.timer)
       this.timer = null
     },
@@ -370,21 +374,6 @@ export default {
           }
         }
       }
-
-      /*
-      if (this.timeIndex >= this.dataCoin.btc.length-this.dataCoin.eth.length) {
-        this.unlocked['eth'] = true;
-        this.unlocked['bch'] = true;
-        this.conversion['eth'] = this.dataCoin['eth'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.eth.length)]
-        this.conversion['bch'] = this.dataCoin['bch'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.bch.length)]
-      }
-      if (this.timeIndex >= this.dataCoin.btc.length-this.dataCoin.dash.length) {
-        this.unlocked['dash'] = true;
-        this.conversion['dash'] = this.dataCoin['dash'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.dash.length)]
-      }
-      */
-
-
       if (this.timeIndex >= this.dataCoin.btc.length) {
         for (var i = this.coins.length - 1; i >= 0; i--) {
           this.conversion[this.coins[i]] = this.dataCoin[this.coins[i]][this.dataCoin[this.coins[i]].length-1]
@@ -395,18 +384,20 @@ export default {
       }
       this.updateChart('')
       this.saveGame()
+    },
+    getUnlockDate(coin) {
+      let finalDateInMs = 1278547200000 + (this.dataCoin.btc.length*86400000) //***Save      
+      let coinDateInMs = finalDateInMs - (this.dataCoin[coin].length*86400000) //***Save      
+      let time = new Date(coinDateInMs)
+
+      if (this.dateInMs <= coinDateInMs) {
+        return 'Unlock date: '+time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()
+      } else {
+        return "Coin unlocked"
+      }
+
     }
   }
 }
 
-/*
-btc       -
-Litecoin  - 2011
-Ripple    - 2012
-dash      - 4/2/2014
-eth & bch - 1/9/2015
-
-
-
-*/
 </script>

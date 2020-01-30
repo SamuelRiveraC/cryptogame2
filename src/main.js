@@ -4,11 +4,21 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import '~/assets/CSS/stylesheet.css'
+import '../node_modules/vue-on-toast/dist/vue-on-toast.css'
 
-import Toasted from 'vue-toasted';
+
+import VueOnToast from 'vue-on-toast';
+import Cryptoicon from 'vue-cryptoicon';
+import icon from 'vue-cryptoicon/src/icons';
+import VTooltip from 'v-tooltip'
+Cryptoicon.add(icon);
  
+
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout)
-  Vue.use(Toasted)
+  Vue.use(VueOnToast)
+  Vue.use(Cryptoicon) // <cryptoicon symbol="btc" size="24" />  
+  Vue.use(VTooltip)   // v-tooltip="'You have ' + count + ' new messages.'"
 }
+

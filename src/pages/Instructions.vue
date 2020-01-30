@@ -24,16 +24,7 @@
 						Update value over 1 years :o 4/11/2018 = 423 days / values more
 					</li>
 					<li>
-						Update UI for smaller screens :D
-					</li>
-					<li>
-						Maybe add a fifth one coin? 
-					</li>
-					<li>
 						Savegames work but when you enter the page they dont update immediatly (prices, my coins and my usd)
-					</li>
-					<li>
-						Update images https://github.com/man15h/vue-cryptoicon
 					</li>
 				</ul>
 	    	</div>
