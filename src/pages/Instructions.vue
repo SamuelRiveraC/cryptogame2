@@ -21,9 +21,6 @@
 	    	<div class="col-8 ">
 				<ul>
 					<li>
-						Update value over 1 years :o 4/11/2018 = 423 days / values more
-					</li>
-					<li>
 						Savegames work but when you enter the page they dont update immediatly (prices, my coins and my usd)
 					</li>
 				</ul>

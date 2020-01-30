@@ -99,9 +99,9 @@ export default {
   data () {
     return {
       //TICKING RELATED DATA
-      coins:['btc','xrp','ltc','dash','eth','bch'],
+      coins:['btc','ltc','xmr','dash','eth','bch','xrp','eos'],
       actualCoin: 'btc', //'btc','eth','bch','dash'
-      coinNames: {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash'},
+      coinNames: {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash', 'xrp':'Ripple','ltc':'Litecoin','eos':'EOS','xmr':'Monero'},
       buySellAmounts: [1,10,25,50,100,250],
 
       // CASH RELATED DATA                 ltc 2011, xrp 2012, xmr && dash 2014, eth & bch 2015
@@ -111,18 +111,30 @@ export default {
         eth:  0.00000, 
         bch:  0.00000, 
         dash: 0.00000,
+        xrp:  0.00000,
+        ltc:  0.00000,
+        eos:  0.00000,
+        xmr:  0.00000
       },
       conversion: {
         btc:  0.05, 
         eth:  0.00, 
         bch:  0.00, 
         dash: 0.00,
+        xrp:  0.00,
+        ltc:  0.00,
+        eos:  0.00,
+        xmr:  0.00
       },
       unlocked:{
         btc:  true, 
         eth:  false, 
         bch:  false, 
         dash: false,
+        xrp:  false,
+        ltc:  false,
+        eos:  false,
+        xmr:  false
       },
       //TIME RELATED DATA
       timer: null,
@@ -140,9 +152,9 @@ export default {
         datasets: [{
           label: 'BTC',
           backgroundColor: 'rgba(0,0,0,0)',
-          borderColor: 'yellow',
-          pointBackgroundColor: 'yellow',
-          pointBorderColor: 'yellow',
+          borderColor: 'blue',
+          pointBackgroundColor: 'blue',
+          pointBorderColor: 'blue',
           borderWidth: 2,
           data: [0.1,0.2,0.3,0.1,0.05,0.1,0.3,0.4,0.7,0.9]
         }]
