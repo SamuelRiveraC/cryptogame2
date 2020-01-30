@@ -7,11 +7,8 @@
       </g-link>
     </div>
 
-
     <transition name="fade" appear>
-      <main> <!-- a wrapper for slot is needed -->
-        <slot /> <!-- the content -->
-      </main>
+      <slot /> <!-- the content -->
     </transition>
 
     <div class="footer">

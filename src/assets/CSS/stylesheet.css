@@ -158,37 +158,118 @@ span{
 
 
 
-  .selectCoin {
-    background-color: #071d2c;
-    padding: 0.5em 0 0.5em 0;
-    margin: 0 0.25em 0 0.25em;
-    cursor: pointer;
-    box-shadow: 0 0 1em 0.33em rgba(0,0,0,0.1);
-  }
-  .selectCoin:hover {
-    background-color: #114569;
-  }
-  .selectCoinDisabled {
-    background-color: #273036 !important;
-    cursor: default !important;
-  }
-  .selectCoinDisabled:hover {
-    background-color: #273036 !important;
-  }
+.coin {
+  box-sizing: border-box;
+  padding: 0.5em 0 0.5em 0;
+  margin: 0 0.25em 0 0.25em;
+  cursor: pointer;
 
-  .buysell-info .col {
-    background-color: #071d2c;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-  }
-  .buysell-info img{
-    height:1.5em;
-    width:1.5em;
-  }
-  .buysell-button {
-    background-color: #071d2c;
-    cursor: pointer;    
-  }
-  .buysell-button:hover {
-    background-color: #114569;
-  }
+  background: #fff;
+
+  border-width: 2px 0px 2px 0px; border-color: rgba(255, 255, 255, 0); border-radius: 2.5px; border-style: solid; box-shadow: 0px 0px 0px 0px rgba(37, 56, 88, 0.25); /* hover styles */ border-style: solid; box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
+
+}
+.coin:hover {
+  background-color: #f1f1f1;
+}
+.coin:active {
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: none;
+  border-width: 2px 0px 2px 0px;
+  border-color: #008AE9;
+}
+.coin span {
+  color:#333;
+}
+
+
+.coin__disabled {
+  background-color: #f1f1f1;
+  cursor: default;
+  box-shadow:none;
+}
+.coin__disabled:hover {
+}
+
+
+.coin__selected {
+  background-color: #008AE9;
+  cursor: default;
+}
+.coin__selected:hover {
+  background-color: #413ec4;
+}
+.coin__selected span {
+  color:#fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.player {
+  box-sizing: border-box;
+  text-align: center;
+  background: #fff;
+  cursor: pointer;
+  vertical-align: middle;
+    
+  border-width: 0px 0px 0px 0px; border-color: rgba(255, 255, 255, 0); border-radius: 2.5px; border-style: solid; box-shadow: 0px 0px 0px 0px rgba(37, 56, 88, 0.25); /* hover styles */ border-style: solid; box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
+}
+.player-button {
+  position: relative;
+  border-style: solid;
+}
+.player-button:hover {
+  background: #f1f1f1;
+  border-width: 2px 0px 2px 0px;
+  border-color: #f1f1f1;
+}
+.player-button:active {
+  background: #ffffff;
+  border-width: 2px 0px 2px 0px;
+  border-color: #008AE9;
+}
+
+
+
+
+
+.player img {
+  position:absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top:50%;
+  height:2em;
+  width: 2em;
+}
+
+
+.buysell-info .col {
+  box-sizing: border-box;
+  padding: 0.5em 0 0.5em 0;
+  cursor: pointer;
+
+  background: #fff;
+
+  border-width: 2px 0px 2px 0px; border-color: rgba(255, 255, 255, 0); border-radius: 2.5px; border-style: solid; box-shadow: 0px 0px 0px 0px rgba(37, 56, 88, 0.25); /* hover styles */ border-style: solid; box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
+}
+.buysell-info img{
+  height:1.5em;
+  width:1.5em;
+}
+.buysell-button {
+  background-color: #071d2c;
+  cursor: pointer;    
+}
+.buysell-button:hover {
+  background-color: #114569;
+}

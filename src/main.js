@@ -5,6 +5,10 @@ import DefaultLayout from '~/layouts/Default.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import '~/assets/CSS/stylesheet.css'
 
+import Toasted from 'vue-toasted';
+ 
+
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout)
+  Vue.use(Toasted)
 }

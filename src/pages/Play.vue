@@ -1,63 +1,28 @@
 <template>
   <Layout>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6 col row selectCoin" @click="updateChart('btc')">
-          <div class="col-sm-12 col-md-4 text-center">
-            <g-image src="~/assets/IMG/BTC_Miniature.png" />
-          </div>
-          <div class="col-sm-12 col-md-8">
-            <span style="color:white;">
-              You Got:
-            </span>
-            <br>
-            <span style="color:white;"> {{haveBtc}} BTC </span> <br>
-            <span style="color:white;"> Price:  </span> <span style="color:white;"> ${{usdBtc}} </span>
-          </div>
-        </div>
-        <div class="col-xs-6 col row selectCoin" :class="{selectCoinDisabled:dashUnlocked}" @click="updateChart('dash')">
-          <div class="col-sm-12 col-md-4 text-center">
-            <g-image src="~/assets/IMG/RCH_Miniature.png" />
-          </div>
-          <div class="col-sm-12 col-md-8">
-            <span style="color:white;">
-              You Got:
-            </span>
-            <br>
-            <span style="color:white;"> {{haveDash}} DASH </span> <br>
-            <span style="color:white;"> Price:  </span> <span style="color:white;"> ${{usdDash}} </span>
-          </div>
-        </div>
-        <div class="col-xs-6 col row selectCoin" :class="{selectCoinDisabled:ethAndBchUnlocked}" @click="updateChart('eth')">
-          <div class="col-sm-12 col-md-4 text-center">
-            <g-image src="~/assets/IMG/ETH_Miniature.png" />
-          </div>
-          <div class="col-sm-12 col-md-8">
-            <span style="color:white;">
-              You Got:
-            </span>
-            <br>
-            <span style="color:white;"> {{haveEth}} ETH</span> <br>
-            <span style="color:white;"> Price:  </span> <span style="color:white;"> ${{usdEth}} </span>
-          </div>
-        </div>
-        <div class="col-xs-6 col row selectCoin" :class="{selectCoinDisabled:ethAndBchUnlocked}" @click="updateChart('bch')">
-          <div class="col-sm-12 col-md-4 text-center">
-            <g-image src="~/assets/IMG/BCH_Miniature.png" />
-          </div>
-          <div class="col-sm-12 col-md-8">
-            <span style="color:white;">
-              You Got:
-            </span>
-            <br>
-            <span style="color:white;"> {{haveBch}} BCH</span> <br>
-            <span style="color:white;"> Price:  </span> <span style="color:white;"> ${{usdBch}} </span>
+    <div class="container-fluid">
+
+      
+      <div class="row mb-5">
+        <div v-for="coin in coins" :key="coin" @click="updateChart(coin)" :class="coinStyle(coin)">
+          <div class="row">
+            <div class="col-12 col-md-4 text-center">
+              <g-image src="~/assets/IMG/BTC_Miniature.png" />
+            </div>
+            <div class="col-12 col-md-8">
+              <span> You Got: </span>
+              <br>
+              <span> {{ have[coin] }}   {{coin.toUpperCase()}}</span>
+              <br>
+              <span> Price:  </span> <span> ${{conversion[coin]}} </span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="row mt-4 mb-2">
+
+      <div class="row">
         <div class="col-2 text-center">
-          <p class="h4">You have: <br> ${{haveUsd.toFixed(2)}}</p>
+          <p class="h4">USD in Cash: <br> ${{have['usd'].toFixed(2)}}</p>
         </div>
         <div class="col-3 text-center">
           <p class="h4">USD in Crypto: <br> ${{usdCrypto}} </p>
@@ -65,31 +30,30 @@
         <div class="col-2 text-center">
           <p class="h4">Date: <br> {{dateInText}}</p>
         </div>
-        <div class="col-5 row buysell-info justify-content-center">
-          <div class="col buysell-button text-center" @click="stopTimer()">
+
+        <div class="col-5 row player px-0">
+          <div class="col player-button" @click="stopTimer()">
             <g-image src="~/assets/IMG/Pause_game_button.png" />
           </div>
-          <div class="col buysell-button text-center" @click="nextTimer()">
+          <div class="col player-button" @click="nextTimer()">
             <g-image src="~/assets/IMG/Forward_day_game_button.png" />
           </div>
-          <div class="col buysell-button text-center" @click="startTimer(1000)">
+          <div class="col player-button" @click="startTimer(1000)">
             <g-image src="~/assets/IMG/Play_game_button.png" />
           </div>
-          <div class="col buysell-button text-center" @click="startTimer(500)">
+          <div class="col player-button" @click="startTimer(500)">
             <g-image src="~/assets/IMG/Forward_game_button.png" />
           </div>
-          <div class="col buysell-button text-center" @click="startTimer(100)">
+          <div class="col player-button" @click="startTimer(100)">
             <g-image src="~/assets/IMG/Fast_forward_game_button.png" />
           </div>
         </div>
       </div>
-      <br>
-      <div class="row justify-content-center"> 
+      <div class="row"> 
         <div class="col-12">
            <Chart :chart-data="datacollection" :options="options"></Chart>
         </div>
       </div>
-      <br><br><br>
       <div class="row">
         <div class="col mr-4">
           <div class="row">
@@ -103,7 +67,7 @@
                 <p>1 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="buy('1' ,actualCoin)">
-                <span>${{priceCoin(1).toFixed(2)}}</span>
+                <span>${{priceCoin(1,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
             <div class="col row buysell-info">
@@ -111,7 +75,7 @@
                 <p>10 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="buy('10' ,actualCoin)">
-                <span>${{priceCoin(10).toFixed(2)}}</span>
+                <span>${{priceCoin(10,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
           </div>
@@ -121,7 +85,7 @@
                 <p>25 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="buy('25' ,actualCoin)">
-                <span>${{priceCoin(25).toFixed(2)}}</span>
+                <span>${{priceCoin(25,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
             <div class="col row buysell-info">
@@ -129,7 +93,7 @@
                 <p>50 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="buy('50' ,actualCoin)">
-                <span>${{priceCoin(50).toFixed(2)}}</span>
+                <span>${{priceCoin(50,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
           </div>        
@@ -139,7 +103,7 @@
                 <p>100 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="buy('100' ,actualCoin)">
-                <span>${{priceCoin(100).toFixed(2)}}</span>
+                <span>${{priceCoin(100,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
             <div class="col row buysell-info">
@@ -147,7 +111,7 @@
                 <p>200 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="buy('200' ,actualCoin)">
-                <span>${{priceCoin(200).toFixed(2)}}</span>
+                <span>${{priceCoin(200,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
           </div>     
@@ -164,7 +128,7 @@
                 <p>1 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="sell('1' ,actualCoin)">
-                <span> ${{priceCoin(1).toFixed(2)}}</span>
+                <span> ${{priceCoin(1,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
             <div class="col row buysell-info">
@@ -172,7 +136,7 @@
                 <p>10 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="sell('10' ,actualCoin)">
-                <span> ${{priceCoin(10).toFixed(2)}}</span>
+                <span> ${{priceCoin(10,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
           </div>
@@ -182,7 +146,7 @@
                 <p>25 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="sell('25' ,actualCoin)">
-                <span> ${{priceCoin(25).toFixed(2)}}</span>
+                <span> ${{priceCoin(25,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
             <div class="col row buysell-info">
@@ -190,7 +154,7 @@
                 <p>50 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="sell('50' ,actualCoin)">
-                <span> ${{priceCoin(50).toFixed(2)}}</span>
+                <span> ${{priceCoin(50,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
           </div>        
@@ -200,7 +164,7 @@
                 <p>100 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="sell('100' ,actualCoin)">
-                <span> $ {{priceCoin(100).toFixed(2)}}</span>
+                <span> $ {{priceCoin(100,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
             <div class="col row buysell-info">
@@ -208,24 +172,23 @@
                 <p>200 {{actualCoin.toUpperCase()}}</p>
               </div>
               <div class="col text-center buysell-button" @click="sell('200' ,actualCoin)">
-                <span> $ {{priceCoin(200).toFixed(2)}}</span>
+                <span> $ {{priceCoin(200,actualCoin).toFixed(2)}}</span>
               </div>
             </div>
           </div>
         </div>    
       </div>
-      <br><br><br>
     </div>
   </Layout>
 </template>
 
 <script>
-  import Chart from '~/components/Chart.vue'
-  import dataCoin from '~/data/dataCoin.json'
+import Chart from '~/components/Chart.vue'
+import dataCoin from '~/data/dataCoin.json'
 
 export default {
   metaInfo: {
-    title: 'Hello, world!'
+    title: 'Play'
   },
   components: {
     Chart
@@ -233,23 +196,31 @@ export default {
   data () {
     return {
       //TICKING RELATED DATA
+      coins:['btc','dash','eth','bch',],
       actualCoin: 'btc', //'btc','eth','bch','dash'
 
       // CASH RELATED DATA
-      haveUsd: 100, //***Save
-      haveBtc: 0.00000, //***Save
-      haveEth: 0.00000, //***Save
-      haveBch: 0.00000, //***Save
-      haveDash: 0.00000, //***Save
-
-      usdBtc: 0.05,
-      usdEth: 0,
-      usdBch: 0,
-      usdDash: 0,
-
+      have: {
+        usd:  100,
+        btc:  0.00000, 
+        eth:  0.00000, 
+        bch:  0.00000, 
+        dash: 0.00000,
+      },
+      conversion: {
+        btc:  0.05, 
+        eth:  0.00, 
+        bch:  0.00, 
+        dash: 0.00,
+      },
+      unlocked:{
+        btc:  true, 
+        eth:  false, 
+        bch:  false, 
+        dash: false,
+      },
       //TIME RELATED DATA
       timer: null,
-
       timeIndex: 0, //***Save
       dateInMs: 1278547200000 + (0*86400000), //***Save      
       dateInText: '9/10/2013',
@@ -312,7 +283,14 @@ export default {
   },
   computed: {
     usdCrypto () {
-      return ((this.haveBtc*this.usdBtc)+(this.haveEth*this.usdEth)+(this.haveBch*this.usdBch)+(this.haveDash*this.usdDash)).toFixed(2)
+      let amount = 0
+      for (var i = this.coins.length - 1; i >= 0; i--) {
+        amount +=   this.have[this.coins[i]]*this.conversion[this.coins[i]]
+      }
+
+      return amount.toFixed(2);
+
+      return ((this.have['btc']*this.conversion['btc'])+(this.have['eth']*this.conversion['eth'])+(this.have['bch']*this.conversion['bch'])+(this.have['dash']*this.conversion['dash'])).toFixed(2)
     },
     labels () {
       let labels = []
@@ -334,24 +312,13 @@ export default {
         coin.push(this.dataCoin[this.actualCoin][i])      
       }
       return coin
-    },
-    ethAndBchUnlocked () {
-      if (this.timeIndex  < this.dataCoin.btc.length - this.dataCoin.eth.length) {
-        return true
-      } else {
-        return false
-      }
-    },
-    dashUnlocked () {
-      if (this.timeIndex < this.dataCoin.btc.length - this.dataCoin.dash.length) {
-        return true
-      } else {
-        return false
-      }
     }
   },
   methods: {
     //SAVE GAME METHODS
+    coinStyle(coin) {
+      return "col coin "+(this.actualCoin == coin ? 'coin__selected ' : '')+(!this.unlocked[coin] ? 'coin__disabled' : '') 
+    },
     createCookie(key, value, date) {
       var expiration = new Date(date).toUTCString();
       var cookie = escape(key) + "=" + escape(value) + ";expires=" + expiration + ";";
@@ -372,11 +339,11 @@ export default {
       return null;
     },
     newGame () {
-      this.createCookie('haveUsd', this.haveUsd,-1)
-      this.createCookie('haveBtc', this.haveBtc,-1)
-      this.createCookie('haveEth', this.haveEth,-1)
-      this.createCookie('haveBch', this.haveBch,-1)
-      this.createCookie('haveDash', this.haveDash,-1)
+      this.createCookie('haveUsd', this.have['usd'],-1)
+      this.createCookie('haveBtc', this.have['btc'],-1)
+      this.createCookie('haveEth', this.have['eth'],-1)
+      this.createCookie('haveBch', this.have['bch'],-1)
+      this.createCookie('haveDash', this.have['dash'],-1)
       this.createCookie('timeIndex', this.timeIndex,-1)
       this.createCookie('dateInMs', this.dateInMs, -1)
       this.updateChart('')
@@ -386,11 +353,11 @@ export default {
       let expirationDate = new Date()
       expirationDate.setMonth(expirationDate.getMonth()+1)
       expirationDate = expirationDate.getTime()
-      this.createCookie('haveUsd', this.haveUsd,  expirationDate   )
-      this.createCookie('haveBtc', this.haveBtc,  expirationDate   )
-      this.createCookie('haveEth', this.haveEth,  expirationDate   )
-      this.createCookie('haveBch', this.haveBch,  expirationDate   )
-      this.createCookie('haveDash', this.haveDash,  expirationDate   )
+      this.createCookie('haveUsd', this.have['usd'],  expirationDate   )
+      this.createCookie('haveBtc', this.have['btc'],  expirationDate   )
+      this.createCookie('haveEth', this.have['eth'],  expirationDate   )
+      this.createCookie('haveBch', this.have['bch'],  expirationDate   )
+      this.createCookie('haveDash', this.have['dash'],  expirationDate   )
       this.createCookie('timeIndex', this.timeIndex,  expirationDate   )
       this.createCookie('dateInMs', this.dateInMs,   expirationDate  )
     },
@@ -398,11 +365,11 @@ export default {
       if (this.readCookie('dateInMs') === null) {
         console.error("NO SAVEGAME AVAILABLE")
       }
-      this.haveUsd  = parseFloat(this.readCookie('haveUsd'))
-      this.haveBtc  = parseFloat(this.readCookie('haveBtc'))
-      this.haveEth  = parseFloat(this.readCookie('haveEth'))
-      this.haveBch  = parseFloat(this.readCookie('haveBch'))
-      this.haveDash = parseFloat(this.readCookie('haveDash'))
+      this.have['usd']  = parseFloat(this.readCookie('haveUsd'))
+      this.have['btc']  = parseFloat(this.readCookie('haveBtc'))
+      this.have['eth']  = parseFloat(this.readCookie('haveEth'))
+      this.have['bch']  = parseFloat(this.readCookie('haveBch'))
+      this.have['dash'] = parseFloat(this.readCookie('haveDash'))
       this.timeIndex = parseInt(this.readCookie('timeIndex'))
       this.dateInMs = parseInt(this.readCookie('dateInMs'))
       let time = new Date(this.dateInMs)
@@ -411,51 +378,66 @@ export default {
     },
     //BUY - SELLING METHODS
     buy (amount,coin) {
-      if (coin === 'btc' && this.haveUsd >= amount * this.usdBtc) {
-        this.haveBtc += Math.floor( (parseInt(amount)) * 100000) / 100000
-        this.haveUsd -= parseInt(amount) * this.usdBtc
-      } else if (coin === 'eth' && this.haveUsd >= amount * this.usdEth) {
-        this.haveEth += Math.floor( (parseInt(amount)) * 100000) / 100000 
-        this.haveUsd -= parseInt(amount) * this.usdEth       
-      } else if (coin === 'bch' && this.haveUsd >= amount * this.usdBch) {
-        this.haveBch += Math.floor( (parseInt(amount)) * 100000) / 100000
-        this.haveUsd -= parseInt(amount) * this.usdBch
-      } else if (coin === 'dash' && this.haveUsd >= amount * this.usdDash) {
-        this.haveDash += Math.floor( (parseInt(amount)) * 100000) / 100000
-        this.haveUsd -= parseInt(amount) * this.usdDash
-      }        
+
+      if (this.have['usd'] >= amount * this.conversion[coin]) {
+        this.have[coin] += Math.floor( (parseInt(amount)) * 100000) / 100000
+        this.have['usd'] -= parseInt(amount) * this.conversion[coin]
+      }
+
+      /*
+      if (coin === 'btc' && this.have['usd'] >= amount * this.conversion['btc']) {
+        this.have['btc'] += Math.floor( (parseInt(amount)) * 100000) / 100000
+        this.have['usd'] -= parseInt(amount) * this.conversion['btc']
+      } else if (coin === 'eth' && this.have['usd'] >= amount * this.conversion['eth']) {
+        this.have['eth'] += Math.floor( (parseInt(amount)) * 100000) / 100000 
+        this.have['usd'] -= parseInt(amount) * this.conversion['eth']       
+      } else if (coin === 'bch' && this.have['usd'] >= amount * this.conversion['bch']) {
+        this.have['bch'] += Math.floor( (parseInt(amount)) * 100000) / 100000
+        this.have['usd'] -= parseInt(amount) * this.usdBch
+      } else if (coin === 'dash' && this.have['usd'] >= amount * this.conversion['dash']) {
+        this.have['dash'] += Math.floor( (parseInt(amount)) * 100000) / 100000
+        this.have['usd'] -= parseInt(amount) * this.conversion['dash']
+      }
+      */       
     },
     sell (amount,coin) {
-      if (this.haveBtc >= amount && coin === 'btc') {
-        this.haveBtc -= parseInt(amount)
-        this.haveUsd += Math.floor( (parseInt(amount)* this.usdBtc) * 100000) / 100000
-      } else if (this.haveEth >= amount && coin === 'eth') {
-        this.haveEth -= parseInt(amount)
-        this.haveUsd += Math.floor( (parseInt(amount)* this.usdEth) * 100000) / 100000
-      } else if (this.haveBch >= amount && coin === 'bch') {
-        this.haveBch -= parseInt(amount)
-        this.haveUsd += Math.floor( (parseInt(amount)* this.usdBch) * 100000) / 100000
-      } else if (this.haveDash >= amount && coin === 'dash') {
-        this.haveDash -= parseInt(amount)
-        this.haveUsd += Math.floor( (parseInt(amount)* this.usdDash) * 100000) / 100000
+
+      if (this.have[coin] >= amount) {
+        this.have[coin] -= parseInt(amount)
+        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion[coin]) * 100000) / 100000
       }
+
+
+      /*
+      if (this.have['btc'] >= amount && coin === 'btc') {
+        this.have['btc'] -= parseInt(amount)
+        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion['btc']) * 100000) / 100000
+      } else if (this.have['eth'] >= amount && coin === 'eth') {
+        this.have['eth'] -= parseInt(amount)
+        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion['eth']) * 100000) / 100000
+      } else if (this.have['bch'] >= amount && coin === 'bch') {
+        this.have['bch'] -= parseInt(amount)
+        this.have['usd'] += Math.floor( (parseInt(amount)* this.usdBch) * 100000) / 100000
+      } else if (this.have['dash'] >= amount && coin === 'dash') {
+        this.have['dash'] -= parseInt(amount)
+        this.have['usd'] += Math.floor( (parseInt(amount)* this.conversion['dash']) * 100000) / 100000
+      }
+      */
     },
     // VALUES AND CHART METHODS
-    priceCoin(amount) {
-      if (this.actualCoin === 'btc') {
-        return (parseInt(amount)* this.usdBtc)
-      } else if (this.actualCoin === 'eth') {
-        return (parseInt(amount)* this.usdEth)        
-      } else if (this.actualCoin === 'bch') {
-        return (parseInt(amount)* this.usdBch)
-      } else if (this.actualCoin === 'dash') {
-        return (parseInt(amount)* this.usdDash)       
-      }
+    priceCoin(amount,coin) {
+
+      return parseInt(amount)*this.conversion[coin]
+
     },
     updateChart (coin) {
-      if (!((coin === 'eth' || coin === 'bch') && this.ethAndBchUnlocked === true) || !(coin === 'dash' && this.dashUnlocked === true)) {
+      
+
+      if (!((coin === 'eth' || coin === 'bch') && this.unlocked['eth'] === true) || !(coin === 'dash' && this.unlocked['dash'] === true)) {
         if (coin !== '') {
+          let coinNames = {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash'}
           this.actualCoin = coin
+          this.$toasted.show("Selected "+coinNames[coin]).goAway(2500)
         }
         var change = {
           labels: this.labels,
@@ -496,21 +478,43 @@ export default {
       this.dateInText = time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()
       this.timeIndex++
       
-      this.usdBtc = this.dataCoin['btc'][this.timeIndex]
+      for (var i = this.coins.length - 1; i >= 0; i--) {
+        
+        if (this.coins[i] == 'btc') {
+          this.conversion['btc'] = this.dataCoin['btc'][this.timeIndex]
+        } else {
+          if (this.timeIndex >= this.dataCoin.btc.length-this.dataCoin[this.coins[i]].length) {
+            this.unlocked[this.coins[i]] = true;
+            this.conversion[this.coins[i]] = this.dataCoin[this.coins[i]][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin[this.coins[i]].length)]
+          }
+        }
 
+
+
+
+
+
+      }
+
+      /*
       if (this.timeIndex >= this.dataCoin.btc.length-this.dataCoin.eth.length) {
-        this.usdEth = this.dataCoin['eth'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.eth.length)]
-        this.usdBch = this.dataCoin['bch'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.bch.length)]
+        this.unlocked['eth'] = true;
+        this.unlocked['bch'] = true;
+        this.conversion['eth'] = this.dataCoin['eth'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.eth.length)]
+        this.conversion['bch'] = this.dataCoin['bch'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.bch.length)]
       }
       if (this.timeIndex >= this.dataCoin.btc.length-this.dataCoin.dash.length) {
-        this.usdDash = this.dataCoin['dash'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.dash.length)]
+        this.unlocked['dash'] = true;
+        this.conversion['dash'] = this.dataCoin['dash'][this.timeIndex-(this.dataCoin.btc.length-this.dataCoin.dash.length)]
       }
+      */
+
+
       if (this.timeIndex >= this.dataCoin.btc.length) {
+        for (var i = this.coins.length - 1; i >= 0; i--) {
+          this.conversion[this.coins[i]] = this.dataCoin[this.coins[i]][this.dataCoin[this.coins[i]].length-1]
+        }
         console.error("FINISHED")
-        this.usdBtc = this.dataCoin['btc'][this.dataCoin.btc.length-1]
-        this.usdEth = this.dataCoin['eth'][this.dataCoin.eth.length-1]
-        this.usdBch = this.dataCoin['bch'][this.dataCoin.bch.length-1]
-        this.usdDash = this.dataCoin['dash'][this.dataCoin.dash.length-1]
         clearInterval(this.timer)
         this.timer = null
       }
@@ -519,37 +523,15 @@ export default {
     }
   }
 }
+
+/*
+btc       -
+Litecoin  - 2011
+Ripple    - 2012
+dash      - 4/2/2014
+eth & bch - 1/9/2015
+
+
+
+*/
 </script>
-
-<style>
-  .selectCoin {
-    background-color: #071d2c;
-    padding: 0.5em 0 0.5em 0;
-    margin: 0 0.25em 0 0.25em;
-    cursor: pointer;
-    box-shadow: 0 0 1em 0.33em rgba(0,0,0,0.1);
-  }
-  .selectCoin:hover {
-    background-color: #114569;
-  }
-  .selectCoinDisabled {
-    background-color: #273036 !important;
-    cursor: default !important;
-  }
-  .selectCoinDisabled:hover {
-    background-color: #273036 !important;
-  }
-
-  .buysell-info .col {
-    background-color: #071d2c;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-  }
-  .buysell-button {
-    background-color: #071d2c;
-    cursor: pointer;    
-  }
-  .buysell-button:hover {
-    background-color: #114569;
-  }
-</style>
