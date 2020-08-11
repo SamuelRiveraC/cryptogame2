@@ -1,14 +1,18 @@
-# Default starter for Gridsome
+# Cryptogame: Coins2trade 2.0
 
-This is the project you get when you run `gridsome create new-project`.
+This is game I developed for a client, since he got desinterested in the project, he's ok with me sharing the source code. One year after I've updated it to a lighter theme and to use the gatsby equivalent in Vue.
 
-### 1. Install Gridsome CLI tool if you don't have
+### Technologies
+- VueJs 2
+- Gridsome (Vue counterpart of Gatsby)
+- Bootstrap 4
+- ChartJs
 
-`npm install --global @gridsome/cli`
+### To Do list
+1. Better savegame methods at Play.vue
+2. Update UI for a better UX
+3. Add responsiveness 
+4. Change title of the site
 
-### 2. Create a Gridsome project
-
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+### Play !
+<a href="https://samuelriverac.github.io/cryptogame2/"> Play here! </a>
