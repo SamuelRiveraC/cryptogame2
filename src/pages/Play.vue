@@ -4,32 +4,31 @@
       <toast-container></toast-container>
       
       <div class="row mb-3">
-        <div v-for="coin in coins" :key="coin" @click="updateChart(coin)" :class="coinStyle(coin)" v-tooltip="getUnlockDate(coin)">
-          <div class="row">
-            <div class="col-4 text-center">
+        <div class="col-6 col-md-3 col-lg-2 px-1 pb-3"  v-for="coin in coins" :key="coin" v-tooltip="getUnlockDate(coin)">
+          <div class="row align-items-center" @click="updateChart(coin)" :class="coinStyle(coin)">
+            <div class="col-3 text-center">
               <cryptoicon :symbol="coin" size="32" />
             </div>
-            <div class="col-8">
-              <span> You Got: {{ have[coin] }}   {{coin.toUpperCase()}}</span>
-              <br>
-              <span> Price:  </span> <span> ${{conversion[coin]}} </span>
+            <div class="col-9">
+              <span> Price:  </span> <span> ${{conversion[coin]}} </span> <br>
+              <span> Have: {{ have[coin] }}   {{coin.toUpperCase()}}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row mb-3">
-        <div class="col-2 text-center">
-          <p class="h4">USD in Cash: <br> ${{have['usd'].toFixed(2)}}</p>
+      <div class="row mb-3 justify-content-center align-items-center">
+        <div class="col-4 col-lg-2 mb-3 info text-center">
+          <p>USD in Cash: <br> ${{have['usd'].toFixed(2)}}</p>
         </div>
-        <div class="col-3 text-center">
-          <p class="h4">USD in Crypto: <br> ${{usdCrypto}} </p>
+        <div class="col-4 col-lg-2 mb-3 info text-center">
+          <p>USD in Crypto: <br> ${{usdCrypto}} </p>
         </div>
-        <div class="col-2 text-center">
-          <p class="h4">Date: <br> {{dateInText}}</p>
+        <div class="col-4 col-lg-2 mb-3 info text-center">
+          <p>Date: <br> {{dateInText}}</p>
         </div>
 
-        <div class="col-5 row player px-0">
+        <div class="col-12 col-lg-6 row player px-0">
           <div class="col player-button" @click="stopTimer()">
             <g-image src="~/assets/IMG/Pause_game_button.png" />
           </div>
@@ -63,7 +62,7 @@
             </div>
           </div>
           <div class="row">
-            <div v-for="amount in buySellAmounts" :key="amount" class="col-3 buysell-button" @click="buy(amount ,actualCoin)">
+            <div v-for="amount in buySellAmounts" :key="amount" class="col-5 col-md-3 buysell-button" @click="buy(amount ,actualCoin)">
               <span> Buy {{amount}} {{actualCoin.toUpperCase()}} <br> for ${{priceCoin(amount,actualCoin).toFixed(2)}}</span>
             </div>
           </div>     
@@ -75,7 +74,7 @@
             </div>
           </div>
           <div class="row">
-            <div v-for="amount in buySellAmounts" :key="amount" class="col-3 buysell-button" @click="sell(amount ,actualCoin)">
+            <div v-for="amount in buySellAmounts" :key="amount" class="col-5 col-md-3 buysell-button" @click="sell(amount ,actualCoin)">
               <span> Sell {{amount}} {{actualCoin.toUpperCase()}} <br> for ${{priceCoin(amount,actualCoin).toFixed(2)}}</span>
             </div>
           </div>  

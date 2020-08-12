@@ -167,7 +167,8 @@ span{
   background: #fff;
 
   border-width: 2px 0px 2px 0px; border-color: rgba(255, 255, 255, 0); border-radius: 2.5px; border-style: solid; box-shadow: 0px 0px 0px 0px rgba(37, 56, 88, 0.25); /* hover styles */ border-style: solid; box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
-
+  
+  font-size: 16px;
 }
 .coin:hover {
   background-color: #f0f0f0;
@@ -211,7 +212,9 @@ span{
 
 
 
-
+.info {
+  font-size: 1.2em;
+}
 
 
 
@@ -221,8 +224,12 @@ span{
   background: #fff;
   cursor: pointer;
   vertical-align: middle;
-    
-  border-width: 0px 0px 0px 0px; border-color: rgba(255, 255, 255, 0); border-radius: 2.5px; border-style: solid; box-shadow: 0px 0px 0px 0px rgba(37, 56, 88, 0.25); /* hover styles */ border-style: solid; box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
+  min-height: 60px;
+  border-width: 0px 0px 0px 0px;
+  border-color: rgba(255, 255, 255, 0);
+  border-radius: 2.5px;
+  border-style: solid;
+  box-shadow: 0px 4px 12px 0px rgba(37, 56, 88, 0.25);
 }
 .player-button {
   position: relative;
@@ -231,10 +238,10 @@ span{
 .player-button:hover {
   background: #f0f0f0;
   border-width: 2px 0px 2px 0px;
-  border-color: #f0f0f0;
+  border-color: #fff;
 }
 .player-button:active {
-  background: #ffffff;
+  background: #fff;
   border-width: 2px 0px 2px 0px;
   border-color: #008AE9;
 }
@@ -275,7 +282,7 @@ span{
   background-color: #fff;
   cursor: pointer;   
 
-  margin: 0.5em 0.5em 0.5em; 
+  margin: 0em 0.5em 0.5em; 
   padding: 0.5em 0em;
 
   text-align: center;
@@ -420,4 +427,34 @@ span{
   visibility: visible;
   opacity: 1;
   transition: opacity .15s;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .app {
+    margin-left: 5%;
+    width: 90%;
+  }
+  .info {
+    font-size: 1em;
+  }
+
+  .logo {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 425px) {
+  .app {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
