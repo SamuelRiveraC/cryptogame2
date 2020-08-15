@@ -84,6 +84,10 @@
   </Layout>
 </template>
 
+
+
+
+
 <script>
 import Chart from '~/components/Chart.vue'
 import dataCoin from '~/data/dataCoin.json'
@@ -97,88 +101,83 @@ export default {
   },
   data () {
     return {
-      //TICKING RELATED DATA
-      coins:['btc','ltc','xmr','dash','eth','bch','xrp','eos'],
-      actualCoin: 'btc', //'btc','eth','bch','dash'
-      coinNames: {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash', 'xrp':'Ripple','ltc':'Litecoin','eos':'EOS','xmr':'Monero'},
-      buySellAmounts: [1,10,25,50,100,250],
-
-      // CASH RELATED DATA                 ltc 2011, xrp 2012, xmr && dash 2014, eth & bch 2015
-      have: {
-        usd:  100,
-        btc:  0.00000, 
-        eth:  0.00000, 
-        bch:  0.00000, 
-        dash: 0.00000,
-        xrp:  0.00000,
-        ltc:  0.00000,
-        eos:  0.00000,
-        xmr:  0.00000
-      },
-      conversion: {
-        btc:  0.05, 
-        eth:  0.00, 
-        bch:  0.00, 
-        dash: 0.00,
-        xrp:  0.00,
-        ltc:  0.00,
-        eos:  0.00,
-        xmr:  0.00
-      },
-      unlocked:{
-        btc:  true, 
-        eth:  false, 
-        bch:  false, 
-        dash: false,
-        xrp:  false,
-        ltc:  false,
-        eos:  false,
-        xmr:  false
-      },
-      //TIME RELATED DATA
-      timer: null,
-      timeIndex: 0, //***Save
-      dateInMs: 1278547200000 + (0*86400000), //***Save      
-      dateInText: '9/10/2013',
-
-      // GRAPHS RELATED DATA
-      dates: [],
-
-      dataCoin: dataCoin,
-
-      datacollection: {
-        labels: [1,2,3,4,5,6,7,8,9,10],
-        datasets: [{
-          label: 'BTC',
-          backgroundColor: 'rgba(0,0,0,0)',
-          borderColor: 'blue',
-          pointBackgroundColor: 'blue',
-          pointBorderColor: 'blue',
-          borderWidth: 2,
-          data: [0.1,0.2,0.3,0.1,0.05,0.1,0.3,0.4,0.7,0.9]
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          display: false
+      // CASH RELATED DATA 
+        coins:['btc','ltc','xmr','dash','eth','bch','xrp','eos'],
+        actualCoin: 'btc', //'btc','eth','bch','dash'
+        coinNames: {'btc':'Bitcoin','eth':'Ethereum' ,'bch':'Bitcoin Cash' ,'dash':'Dash', 'xrp':'Ripple','ltc':'Litecoin','eos':'EOS','xmr':'Monero'},
+        buySellAmounts: [1,10,25,50,100,250],
+        have: {
+          usd:  100,
+          btc:  0.00000, 
+          eth:  0.00000, 
+          bch:  0.00000, 
+          dash: 0.00000,
+          xrp:  0.00000,
+          ltc:  0.00000,
+          eos:  0.00000,
+          xmr:  0.00000
         },
-        scales: {
-          yAxes: [{
-            gridLines: {
-              display: true,
-              color: "rgba(255,255,255,0.5)"
-            }
-          }],
-          xAxes: [{
-            gridLines: {
-              display: true,
-              color: "rgba(255,255,255,0.5)"
-            }
+        conversion: {
+          btc:  0.05, 
+          eth:  0.00, 
+          bch:  0.00, 
+          dash: 0.00,
+          xrp:  0.00,
+          ltc:  0.00,
+          eos:  0.00,
+          xmr:  0.00
+        },
+        unlocked:{
+          btc:  true, 
+          eth:  false, 
+          bch:  false, 
+          dash: false,
+          xrp:  false,
+          ltc:  false,
+          eos:  false,
+          xmr:  false
+        },
+      //TIME RELATED DATA
+        timer: null,
+        timeIndex: 0, //***Save
+        dateInMs: 1278547200000 + (0*86400000), //***Save      
+        dateInText: '9/10/2013',
+      // GRAPHS RELATED DATA
+        dates: [],
+        dataCoin: dataCoin,
+        datacollection: {
+          labels: [1,2,3,4,5,6,7,8,9,10],
+          datasets: [{
+            label: 'BTC',
+            backgroundColor: 'rgba(0,0,0,0)',
+            borderColor: 'blue',
+            pointBackgroundColor: 'blue',
+            pointBorderColor: 'blue',
+            borderWidth: 2,
+            data: [0.1,0.2,0.3,0.1,0.05,0.1,0.3,0.4,0.7,0.9]
           }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [{
+              gridLines: {
+                display: true,
+                color: "rgba(255,255,255,0.5)"
+              }
+            }],
+            xAxes: [{
+              gridLines: {
+                display: true,
+                color: "rgba(255,255,255,0.5)"
+              }
+            }]
+          }
         }
-      }
     }
   },
   mounted () { 
@@ -197,6 +196,7 @@ export default {
     }
     let time = new Date(this.dateInMs)
     this.dateInText = time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()
+
   },
   computed: {
     usdCrypto () {
@@ -206,8 +206,6 @@ export default {
       }
 
       return amount.toFixed(2);
-
-      return ((this.have['btc']*this.conversion['btc'])+(this.have['eth']*this.conversion['eth'])+(this.have['bch']*this.conversion['bch'])+(this.have['dash']*this.conversion['dash'])).toFixed(2)
     },
     labels () {
       let labels = []
@@ -220,6 +218,7 @@ export default {
     coinRange () {
       let coin = []
       let offset = 0
+      // check
       if (this.actualCoin === 'eth' || this.actualCoin === 'bch') {
         offset = this.dataCoin.btc.length - this.dataCoin.eth.length
       } else if (this.actualCoin === 'dash') {
@@ -232,10 +231,17 @@ export default {
     }
   },
   methods: {
-    //SAVE GAME METHODS
     coinStyle(coin) {
       return "col coin "+(this.actualCoin == coin ? 'coin__selected ' : '')+(!this.unlocked[coin] ? 'coin__disabled' : '') 
     },
+
+
+
+    /*
+     *
+     * //SAVE GAME METHODS
+     *
+    */
     createCookie(key, value, date) {
       var expiration = new Date(date).toUTCString();
       var cookie = escape(key) + "=" + escape(value) + ";expires=" + expiration + ";";
@@ -256,11 +262,10 @@ export default {
       return null;
     },
     newGame () {
-      this.createCookie('haveUsd', this.have['usd'],-1)
-      this.createCookie('haveBtc', this.have['btc'],-1)
-      this.createCookie('haveEth', this.have['eth'],-1)
-      this.createCookie('haveBch', this.have['bch'],-1)
-      this.createCookie('haveDash', this.have['dash'],-1)
+      this.createCookie('have_usd', this.have['usd'],-1)
+      for (var i = this.coins.length - 1; i >= 0; i--) {
+        this.createCookie('have_'+this.coins[i], this.have[this.coins[i]],  -1   )
+      }
       this.createCookie('timeIndex', this.timeIndex,-1)
       this.createCookie('dateInMs', this.dateInMs, -1)
       this.updateChart('')
@@ -270,11 +275,11 @@ export default {
       let expirationDate = new Date()
       expirationDate.setMonth(expirationDate.getMonth()+1)
       expirationDate = expirationDate.getTime()
-      this.createCookie('haveUsd', this.have['usd'],  expirationDate   )
-      this.createCookie('haveBtc', this.have['btc'],  expirationDate   )
-      this.createCookie('haveEth', this.have['eth'],  expirationDate   )
-      this.createCookie('haveBch', this.have['bch'],  expirationDate   )
-      this.createCookie('haveDash', this.have['dash'],  expirationDate   )
+      
+      this.createCookie('have_usd', this.have['usd'],  expirationDate   )
+      for (var i = this.coins.length - 1; i >= 0; i--) {
+        this.createCookie('have_'+this.coins[i], this.have[this.coins[i]],  expirationDate   )
+      }
       this.createCookie('timeIndex', this.timeIndex,  expirationDate   )
       this.createCookie('dateInMs', this.dateInMs,   expirationDate  )
     },
@@ -282,18 +287,24 @@ export default {
       if (this.readCookie('dateInMs') === null) {
         console.error("NO SAVEGAME AVAILABLE")
       }
-      this.have['usd']  = parseFloat(this.readCookie('haveUsd'))
-      this.have['btc']  = parseFloat(this.readCookie('haveBtc'))
-      this.have['eth']  = parseFloat(this.readCookie('haveEth'))
-      this.have['bch']  = parseFloat(this.readCookie('haveBch'))
-      this.have['dash'] = parseFloat(this.readCookie('haveDash'))
+      this.have['usd']  = parseFloat(this.readCookie('have_usd'))
+      for (var i = this.coins.length - 1; i >= 0; i--) {
+        this.have[this.coins[i]]  = parseFloat(this.readCookie('have_'+this.coins[i]))
+      }
       this.timeIndex = parseInt(this.readCookie('timeIndex'))
       this.dateInMs = parseInt(this.readCookie('dateInMs'))
       let time = new Date(this.dateInMs)
       this.dateInText = time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()
       this.updateChart('')      
     },
-    //BUY - SELLING METHODS
+
+
+
+    /*
+     *
+     * //BUY - SELLING METHODS
+     *
+    */
     buy (amount,coin) {
 
       if (this.have['usd'] >= amount * this.conversion[coin]) {
@@ -315,7 +326,14 @@ export default {
       }
 
     },
-    // VALUES AND CHART METHODS
+
+
+
+    /*
+     *
+     * //VALUES AND CHART METHODS
+     *
+    */
     priceCoin(amount,coin) {
       return parseInt(amount)*this.conversion[coin]
     },
@@ -343,8 +361,14 @@ export default {
           this.$vueOnToast.pop('error', 'Selected coin', this.coinNames[coin]+" hasn't been unlocked yet")
       }
     },
-    //TIMER METHODS
 
+
+
+    /*
+     *
+     * TIMER METHODS
+     *
+    */
     startTimer (speed) {
       this.$vueOnToast.pop('info', 'Game time', "The game has been resumed ")
 
